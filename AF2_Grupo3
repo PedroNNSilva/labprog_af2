@@ -1,0 +1,162 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <locale.h> //necessário para usar setlocale
+
+void Ex1();
+void Ex2();
+void Ex3();
+void Ex4();
+
+int main()
+{
+	 setlocale(LC_ALL, "Portuguese");//possibilita a acentuação para o português
+	 system("title AF2");
+     system("color 3F");
+
+     int opcao;
+	do
+	{
+	system("cls || clear");
+    printf("\n\n\t\tAF2 | Gestão de Inscrições\t");
+    system("date/t");
+
+     printf("\n\n\t\t\t1  - Inscrição\n");
+     printf("\n\t\t\t2  - Anulação\n");
+     printf("\n\t\t\t3  - Listagem de Inscrições\n");
+     printf("\n\t\t\t4  - Cálculo de Propinas\n");
+
+     printf("\n\t\t\t0 - SAIR!\n\n");
+
+     printf("\n\t\tSeleciona uma das Opcoes Disponiveis: ");
+     scanf("%d",&opcao);
+
+     switch(opcao)
+     {
+          case 1:
+          	fflush(stdin);	// Limpa o buffer do teclado
+          	Ex1();
+            break;
+          case 2:
+          	Ex2();
+            break;
+          case 3:
+          	Ex3();
+            break;
+          case 4:
+          	Ex4();
+            break;
+          case 0:
+          	exit(0);
+
+          default:
+            printf("\n\n\tVALOR INCORRETO\n\n");
+            system("PAUSE");
+     }
+ 	 }while (opcao!=0);
+
+      printf("\n\n\t--- FIM ---\n\n");
+      system("PAUSE");
+  return 0;
+}
+
+void Ex1()
+{
+	fflush(stdin);	// Limpa o buffer do teclado
+	setlocale(LC_ALL, "Portuguese");//possibilita a acentuação para o português
+    system("cls");
+    system("color 3F");
+    system("title AF2");
+
+    printf("\n\n\tAF2 | Registo de Inscrições\t");
+    system("date/t");
+
+    int i;
+
+    char nome[31]; char disciplina[31];
+    int  ects, continua;
+
+    FILE *f;
+
+    f=fopen("ExemploNota.txt","w");
+	do
+	{
+	   	printf("\n\n\tNome:");
+    	fflush(stdin);	// Limpa o buffer do teclado
+    	gets(nome);
+
+        printf("\n\tDisciplina:");
+    	fflush(stdin);	// Limpa o buffer do teclado
+    	gets(disciplina);
+
+		printf("\n\tNrº Ects:");
+	    scanf("%d",&ects);
+		fflush(stdin);
+
+		fprintf(f,"%s %s %d\n", nome, disciplina, ects);
+		printf("\n\tRegistar nova entrada(0 para sair, 1 para continuar): ");
+	    scanf("%d",&continua);
+	}while(continua != 0);
+
+    fclose(f);
+    printf("\n\n\t--- FIM ---\n\n");
+    system("PAUSE");
+
+}
+void Ex2()
+{
+	fflush(stdin);	// Limpa o buffer do teclado
+	setlocale(LC_ALL, "Portuguese");//possibilita a acentuação para o português
+    system("cls");
+    system("color 3F");
+    system("title AF2");
+
+    printf("\n\n\tAF2 | Anulação de Inscrições\t");
+    system("date/t");
+
+    printf("\n\n\t--- FIM ---\n\n");
+    system("PAUSE");
+}
+void Ex3()
+{
+	fflush(stdin);	// Limpa o buffer do teclado
+	setlocale(LC_ALL, "Portuguese");//possibilita a acentuação para o português
+    system("cls");
+    system("color 3F"); system("title AF2");
+
+    printf("\n\n\tAF2 | Listagem de Inscrições\t");
+    system("date/t");
+
+    char nome[31];
+    char disciplina[31];
+    int  ects;
+    char str[60];
+
+    int nota;
+    FILE *f;
+
+    if ((f=fopen("ExemploNota.txt","r"))==NULL)
+	{
+        printf("O ficheiro não existe\n");
+        exit(1);
+    }
+    while (fscanf(f,"%s %s %d", nome, disciplina, &ects)!=EOF)
+        printf("\n\tNome: %s Disciplina: %s Ects: %d\n",nome, disciplina, ects);
+
+    fclose(f);
+    printf("\n\n\t--- FIM ---\n\n");
+    system("PAUSE");
+}
+void Ex4()
+{
+	fflush(stdin);	// Limpa o buffer do teclado
+	setlocale(LC_ALL, "Portuguese");//possibilita a acentuação para o português
+    system("cls");
+    system("color 3F");
+    system("title AF2");
+
+    printf("\n\n\tAF2 | Cálculo de Propinas\t");
+    system("date/t");
+    printf("\n\n\t--- FIM ---\n\n");
+    system("PAUSE");
+}
